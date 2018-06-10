@@ -18,11 +18,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateChainComponent } from './create-chain/create-chain.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateChainComponent
+    CreateChainComponent,
+    AdminComponent,
+    UserComponent
 ],
   imports: [
     BrowserModule,

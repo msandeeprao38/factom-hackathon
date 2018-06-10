@@ -1,69 +1,18 @@
-<mat-toolbar>My App</mat-toolbar>
+<mat-toolbar>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <span *ngIf="caseId">Case ID: {{caseId}}</span>
+  <button mat-raised-button color="primary" (click)="createParentChain()">Create Case</button>
+</mat-toolbar>
  <mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]='nav' *ngFor="let nav of navList">{{nav | uppercase}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content>
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <div *ngIf='!formOpened && !displayChains'>
-        <button mat-raised-button color="primary" (click)="createChain()">Create Chain</button>
-        <button mat-raised-button color="primary" (click)="getChains()">Get Chains</button>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="space-around center" class="create-chain-form" *ngIf='formOpened'>
-        <form [formGroup]='createChainForm'>
-          <mat-form-field class="form-full-width">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="external_id">
-          </mat-form-field>
-          <mat-form-field class="form-full-width">
-            <mat-label>Description</mat-label>
-            <input matInput formControlName="case_id">
-          </mat-form-field>
-
-          <button mat-raised-button (click)="onCancel()">Cancel</button>
-          <button mat-raised-button [disabled]='!createChainForm.valid' color="primary" (click)="onSubmit()">Submit</button>
-        
-        </form> 
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="space-around center" class="chain-list" *ngIf='displayChains'>
-        <div fxLayout="row">
-          <form [formGroup]='addUserForm'>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select Chain" formControlName="chain">
-                <mat-option *ngFor="let chain of chains" [value]="chain">
-                  {{ chain }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select users" multiple formControlName="users">
-                <mat-option *ngFor="let user of users" [value]="user">{{user}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button (click)="goBack()">Cancel</button>
-            <button mat-raised-button [disabled]='!addUserForm.valid' color="primary" (click)="addUsers()">Submit</button>
-          </form> 
-        </div>
-        <div fxLayout="row">
-          <form [formGroup]='createCaseForm'>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select Chain" formControlName="parentid">
-                <mat-option *ngFor="let chain of chains" [value]="chain">
-                  {{ chain }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select users" multiple formControlName="childid">
-                <mat-option *ngFor="let chain of chains" [value]="chain">{{chain}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button (click)="goBack()">Cancel</button>
-            <button mat-raised-button [disabled]='!createCaseForm.valid' color="primary" (click)="createCase()">Submit</button>
-          </form> 
-        </div>
-      </div> 
     
-    </div>
+    <router-outlet></router-outlet>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

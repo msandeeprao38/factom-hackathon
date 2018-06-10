@@ -3,14 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CreateChainComponent } from './create-chain/create-chain.component';
 import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
-    path: 'landing', component: AppComponent,
+    path: 'admin', component: AdminComponent,
   },
-  { path: 'create', component: CreateChainComponent},
+  { path: 'user', component: UserComponent},
   { path: '',
-    redirectTo: '/landing',
+    redirectTo: '/admin',
     pathMatch: 'full'
   }
 ];

@@ -13,13 +13,28 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class AppService {
 
+  createParentChainUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/case/register';
   chainsUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/getall';
-  createChainUrl = 'https://channel-service-dot-ntm-dev-202213.appspot.com/createChain';
+  createChainUrl = 'https://chain-service-dot-ntm-dev-202213.appspot.com/createChain';
   usersUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/member/getall';
   createCaseUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/create_case';
+  authUserUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/auth_user';
+  caseId;
 
 
 constructor(private httpClient: HttpClient) { }
+
+setCaseId(caseId) {
+  this.caseId = caseId;
+}
+
+getCaseId() {
+  return this.caseId;
+}
+
+createParentChain() {
+  return this.httpClient.post(this.createParentChainUrl, httpOptions);
+}
 
 createChain(data) {
   return this.httpClient.post(this.createChainUrl, data, httpOptions);
@@ -34,7 +49,7 @@ getChains() {
 }
 
 addUsers(users) {
-  return this.httpClient.post(this.usersUrl, users, httpOptions);
+  return this.httpClient.post(this.authUserUrl, users, httpOptions);
 }
 
 createCase(data) {
