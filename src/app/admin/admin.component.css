@@ -1,3 +1,6 @@
 .form-full-width {
     width: 100%;
 }
+.create-chain-form, .chain-list {
+    padding: 15px;
+}

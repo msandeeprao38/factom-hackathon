@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { AppService } from './app.service';
 
@@ -14,7 +13,6 @@ export class AppComponent implements OnInit {
   navList = ['user', 'admin'];
 
     constructor(
-      private fb: FormBuilder,
       private service: AppService
     ) {
   }

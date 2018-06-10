@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="start center">
-      <div *ngIf='!formOpened && !displayChains'>
+      <div *ngIf='!formOpened && !displayChains' fxLayoutGap="20px" style="padding: 10px"> 
         <button mat-raised-button color="primary" (click)="createChain()">Create Chain</button>
         <button mat-raised-button color="primary" (click)="getChains()">Add Users</button>
       </div>
@@ -12,10 +12,10 @@
           <mat-form-field class="form-full-width">
             <input matInput formControlName="case_id" placeholder="Case ID">
           </mat-form-field>
-
-          <button mat-raised-button (click)="onCancel()">Cancel</button>
-          <button mat-raised-button [disabled]='!createChainForm.valid' color="primary" (click)="onSubmit()">Submit</button>
-        
+          <div style="padding: 10px" fxLayoutGap="20px">
+            <button mat-raised-button (click)="onCancel()">Cancel</button>
+            <button mat-raised-button [disabled]='!createChainForm.valid' color="primary" (click)="onSubmit()">Submit</button>      
+          </div>
         </form> 
       </div>
 
@@ -34,28 +34,12 @@
                 <mat-option *ngFor="let user of users" [value]="user">{{user}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <button mat-raised-button (click)="goBack()">Cancel</button>
-            <button mat-raised-button [disabled]='!addUserForm.valid' color="primary" (click)="addUsers()">Submit</button>
+            <div style="padding: 10px" fxLayoutGap="20px">
+              <button mat-raised-button (click)="goBack()">Cancel</button>
+              <button mat-raised-button [disabled]='!addUserForm.valid' color="primary" (click)="addUsers()">Submit</button>
+            </div>
           </form> 
         </div>
-        <!-- <div fxLayout="row">
-          <form [formGroup]='createCaseForm'>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select Chain" formControlName="parentid">
-                <mat-option *ngFor="let chain of chains" [value]="chain">
-                  {{ chain }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="form-full-width">
-              <mat-select placeholder="Select users" multiple formControlName="childid">
-                <mat-option *ngFor="let chain of chains" [value]="chain">{{chain}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button (click)="goBack()">Cancel</button>
-            <button mat-raised-button [disabled]='!createCaseForm.valid' color="primary" (click)="createCase()">Submit</button>
-          </form> 
-        </div> -->
       </div> 
     
     </div>

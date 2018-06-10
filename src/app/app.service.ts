@@ -17,8 +17,10 @@ export class AppService {
   chainsUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/getall';
   createChainUrl = 'https://chain-service-dot-ntm-dev-202213.appspot.com/createChain';
   usersUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/member/getall';
-  createCaseUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/create_case';
   authUserUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/auth_user';
+  signPayloadUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/getsignedpayload';
+  addEntryUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/chain/addentry';
+  verifyPayloadUrl = 'https://factom-java-dot-ntm-dev-202213.appspot.com/verification/verifysign';
   caseId;
 
 
@@ -44,16 +46,24 @@ getUsers() {
   return this.httpClient.get(this.usersUrl, httpOptions);
 }
 
-getChains() {
-  return this.httpClient.get(this.chainsUrl, httpOptions);
+getChains(caseId) {
+  return this.httpClient.post(this.chainsUrl, caseId, httpOptions);
 }
 
 addUsers(users) {
   return this.httpClient.post(this.authUserUrl, users, httpOptions);
 }
 
-createCase(data) {
-  return this.httpClient.post(this.createCaseUrl, data, httpOptions);
+signPayload(data) {
+  return this.httpClient.post(this.signPayloadUrl, data, httpOptions);
+}
+
+verifyPayload(data) {
+  return this.httpClient.post(this.verifyPayloadUrl, data, httpOptions);
+}
+
+addEntry(data) {
+  return this.httpClient.post(this.addEntryUrl, data, httpOptions);
 }
 
 }

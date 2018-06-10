@@ -1,3 +1,30 @@
-<p>
-  user works!
-</p>
+<div fxLayout="row" fxLayoutAlign="space-around center" class="create-entry-form">
+  <form [formGroup]='createEntryForm'>
+    <mat-form-field class="form-full-width">
+      <mat-select placeholder="Select user" formControlName="user">
+        <mat-option *ngFor="let user of users" [value]="user">{{user}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput formControlName="payload" placeholder="Description">
+    </mat-form-field>
+
+    <mat-form-field class="form-full-width">
+      <mat-select placeholder="Select Chain" formControlName="chain_id">
+        <mat-option *ngFor="let chain of chains" [value]="chain">
+          {{ chain }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-full-width" *ngIf='createEntryForm.valid && !isSigned'>Please Sign the payload</div>
+    <div class="form-full-width" *ngIf='createEntryForm.valid && isSigned'>Please verify the payload</div>
+    <div style="padding: 10px" fxLayoutGap="20px">
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button *ngIf='!isSigned' [disabled]='!createEntryForm.valid' color="primary" (click)="signPayload()">Sign Payload</button>
+      <button mat-raised-button *ngIf='isSigned'  [disabled]='!createEntryForm.valid' color="primary" (click)="VerifyPayload()">Verify Payload</button>
+      <button mat-raised-button [disabled]='!isSigned' color="primary" (click)="onSubmit()">Submit</button>
+    </div>
+  
+  </form> 
+</div>

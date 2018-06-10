@@ -29,10 +29,7 @@ export class AdminComponent implements OnInit {
       users: ['', Validators.required]
     });
 
-    this.createCaseForm = this.fb.group({
-      parentid: ['', Validators.required],
-      childid: ['', Validators.required]
-    });
+    this.caseId = this.service.getCaseId();
   }
 
   createForm() {
@@ -51,7 +48,10 @@ export class AdminComponent implements OnInit {
   getChains() {
     this.getUsers();
     this.displayChains = true;
-    this.service.getChains().subscribe((res) => {
+    const data = {
+      'external_ids': [this.service.getCaseId()]
+    };
+    this.service.getChains(data).subscribe((res) => {
       this.chains = res;
     });
 
@@ -68,12 +68,10 @@ export class AdminComponent implements OnInit {
         this.service.addUsers(this.addUserForm.value).subscribe((res) => {
       console.log(res);
       this.displayChains = false;
-    });
-  }
-
-  createCase() {
-    this.service.createCase(this.createCaseForm.value).subscribe((res) => {
-      console.log(res);
+      this.addUserForm.reset({
+        chainid: '',
+        users: ''
+      });
     });
   }
 
