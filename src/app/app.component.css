@@ -1,0 +1,17 @@
+.example-container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.form-full-width {
+    width: 100%;
+}
+
+.chain-list{
+    /* position: absolute;
+    top: 0px; */
+}

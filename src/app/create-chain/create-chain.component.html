@@ -1,0 +1,14 @@
+<form [formGroup]='createChainForm'>
+  <mat-form-field class="form-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="external_id">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="case_id">
+  </mat-form-field>
+
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button [disabled]='!createChainForm.valid' color="primary" (click)="onSubmit()">Submit</button>
+
+</form> 
